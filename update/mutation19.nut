@@ -9,6 +9,7 @@ DirectorOptions <-
 //	cm_frustrationTimer = 0
 	cm_TankRun = 1
 	cm_ShouldHurry = 1
+	cm_AutoSpawnInfectedGhosts = 1
 
 	PreferredSpecialDirection = SPAWN_BEHIND_SURVIVORS
 	BehindSurvivorsSpawnDistance = 2000

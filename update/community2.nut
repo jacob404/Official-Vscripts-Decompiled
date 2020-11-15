@@ -18,6 +18,7 @@ DirectorOptions <-
 	JockeyLimit = 0
 
 	ProhibitBosses = 1 //tanks still spawn at finales though
+	MegaMobSize = 0
 
 	// convert items that aren't useful
 	weaponsToConvert =
@@ -33,5 +34,21 @@ DirectorOptions <-
 		}
 		return 0;
 	}
+}
 
+function OnGameEvent_round_start_post_nav( params )
+{
+	local spawner = null;
+	while ( spawner = Entities.FindByClassname( spawner, "info_zombie_spawn" ) )
+	{
+		if ( spawner.IsValid() )
+		{
+			local population = NetProps.GetPropString( spawner, "m_szPopulation" );
+			
+			if ( population == "boomer" || population == "spitter" || population == "church" || population == "river_docks_trap" )
+				continue;
+			else
+				spawner.Kill();
+		}
+	}
 }
