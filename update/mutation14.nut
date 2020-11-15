@@ -1,26 +1,15 @@
 //-----------------------------------------------------
-Msg("Activating Mutation 17\n");
+Msg("Activating Mutation 14\n");
 
 
 DirectorOptions <-
 {
 	ActiveChallenge = 1
 
-	cm_NoSurvivorBots = 1
-
-	cm_CommonLimit = 10
-	cm_BaseCommonAttackDamage = 15
-	cm_WanderingZombieDensityModifier = 0.015
-
-	HunterLimit = 0
-	SmokerLimit = 0
-	ChargerLimit = 0
-	JockeyLimit = 0
-	SpitterLimit = 0
-
 	weaponsToRemove =
 	{
 		weapon_pistol = 0
+		weapon_pistol_magnum = 0
 		weapon_smg = 0
 		weapon_pumpshotgun = 0
 		weapon_autoshotgun = 0
@@ -40,9 +29,7 @@ DirectorOptions <-
 		weapon_rifle_m60 = 0
 		weapon_melee = 0
 		weapon_chainsaw = 0
-		weapon_rifle_m60 = 0
 		ammo = 0
-		upgrade_item = 0
 	}
 
 	function AllowWeaponSpawn( classname )
@@ -54,8 +41,18 @@ DirectorOptions <-
 		return true;
 	}
 
+	function ShouldAvoidItem( classname )
+	{
+		if ( ( classname != "weapon_rifle_m60" && classname != "weapon_pistol_magnum" ) && ( classname in weaponsToRemove ) )
+		{
+			return true;
+		}
+		return false;
+	}
+
 	DefaultItems =
 	[
+		"weapon_rifle_m60",
 		"weapon_pistol_magnum",
 	]
 

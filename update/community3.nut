@@ -14,8 +14,7 @@ DirectorOptions <-
 	SpitterLimit = 0
 	cm_MaxSpecials = 4
 	
-	cm_SpecialRespawnInterval = 1
-	cm_SpecialSlotCountdownTime = 5
+	cm_SpecialRespawnInterval = 20
 	
 	function ConvertZombieClass(id)
 	{

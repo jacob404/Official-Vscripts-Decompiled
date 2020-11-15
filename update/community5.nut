@@ -5,15 +5,17 @@ Msg("Made by Rayman1103\n");
 
 DirectorOptions <-
 {
-	// Challenge vars
 	ActiveChallenge = 1
+
 	cm_ShouldHurry = 1
+	cm_AllowPillConversion = 0
 	cm_AllowSurvivorRescue = 0
+	SurvivorMaxIncapacitatedCount = 0
 
 	weaponsToConvert =
 	{
-		weapon_first_aid_kit = "weapon_pain_pills_spawn"
-		weapon_adrenaline = "weapon_pain_pills_spawn"
+		weapon_first_aid_kit =	"weapon_pain_pills_spawn"
+		weapon_adrenaline =	"weapon_pain_pills_spawn"
 	}
 
 	function ConvertWeaponSpawn( classname )
