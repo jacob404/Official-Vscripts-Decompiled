@@ -9,31 +9,31 @@ DirectorOptions <-
 {
 	//-----------------------------------------------------
 
-	 D_CustomFinale_StageCount = 8
+	 A_CustomFinale_StageCount = 8
 	 
-	 D_CustomFinale1 = PANIC
-	 D_CustomFinaleValue1 = 2
+	 A_CustomFinale1 = PANIC
+	 A_CustomFinaleValue1 = 2
 	 
-	 D_CustomFinale2 = DELAY
-	 D_CustomFinaleValue2 = 12
+	 A_CustomFinale2 = DELAY
+	 A_CustomFinaleValue2 = 12
 	 
-	 D_CustomFinale3 = TANK
-	 D_CustomFinaleValue3 = 1
+	 A_CustomFinale3 = TANK
+	 A_CustomFinaleValue3 = 1
 	 
-	 D_CustomFinale4 = DELAY
-	 D_CustomFinaleValue4 = 12
+	 A_CustomFinale4 = DELAY
+	 A_CustomFinaleValue4 = 12
 	 
-	 D_CustomFinale5 = PANIC
-	 D_CustomFinaleValue5 = 2
+	 A_CustomFinale5 = PANIC
+	 A_CustomFinaleValue5 = 2
 	 
-	 D_CustomFinale6 = DELAY
-	 D_CustomFinaleValue6 = 15
+	 A_CustomFinale6 = DELAY
+	 A_CustomFinaleValue6 = 15
 	 
-	 D_CustomFinale7 = TANK
-	 D_CustomFinaleValue7 = 2
+	 A_CustomFinale7 = TANK
+	 A_CustomFinaleValue7 = 2
 
-	 D_CustomFinale8 = DELAY
-	 D_CustomFinaleValue8 = 10
+	 A_CustomFinale8 = DELAY
+	 A_CustomFinaleValue8 = 10
 	 
 SpecialRespawnInterval = 55
 
