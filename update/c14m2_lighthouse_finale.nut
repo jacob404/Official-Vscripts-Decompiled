@@ -38,7 +38,7 @@ DirectorOptions <-
 	EscapeSpawnTanks = false
 }
 
-local difficulty = Convars.GetStr( "z_difficulty" ).tolower();
+local difficulty = GetDifficulty();
 
 if ( Director.GetGameModeBase() == "versus" )
 {
@@ -57,11 +57,11 @@ if ( Director.GetGameModeBase() == "versus" )
 	DirectorOptions.A_CustomFinaleMusic10 <- "Event.TankMidpoint_Metal";
 	DirectorOptions.A_CustomFinale11 <- DELAY;
 	DirectorOptions.A_CustomFinaleValue11 <- PreEscapeDelay;
-	difficulty = "normal";
+	difficulty = 1;
 }
 else
 {
-	if ( difficulty == "hard" || difficulty == "impossible" )
+	if ( difficulty == 2 || difficulty == 3 )
 	{
 		DirectorOptions.rawdelete("A_CustomFinaleMusic7");
 		DirectorOptions.A_CustomFinale_StageCount = 12;
@@ -117,7 +117,7 @@ function SpawnScavengeCans( difficulty )
 	
 	switch( difficulty )
 	{
-		case "impossible":
+		case 3:
 		{
 			local gascan = null;
 			while ( gascan = Entities.FindByName( gascan, "gascans_finale_expert" ) )
@@ -126,7 +126,7 @@ function SpawnScavengeCans( difficulty )
 					SpawnCan( gascan );
 			}
 		}
-		case "hard":
+		case 2:
 		{
 			local gascan = null;
 			while ( gascan = Entities.FindByName( gascan, "gascans_finale_advanced" ) )
@@ -135,7 +135,7 @@ function SpawnScavengeCans( difficulty )
 					SpawnCan( gascan );
 			}
 		}
-		case "normal":
+		case 1:
 		{
 			local gascan = null;
 			while ( gascan = Entities.FindByName( gascan, "gascans_finale_normal" ) )
@@ -144,7 +144,7 @@ function SpawnScavengeCans( difficulty )
 					SpawnCan( gascan );
 			}
 		}
-		case "easy":
+		case 0:
 		{
 			local gascan = null;
 			while ( gascan = Entities.FindByName( gascan, "gascans_finale_easy" ) )
@@ -166,25 +166,25 @@ NumCansNeeded <- 8
 
 switch( difficulty )
 {
-	case "easy":
+	case 0:
 	{
 		NumCansNeeded = 6;
 		EntFire( "relay_outro_easy", "Enable" );
 		break;
 	}
-	case "normal":
+	case 1:
 	{
 		NumCansNeeded = 8;
 		EntFire( "relay_outro_normal", "Enable" );
 		break;
 	}
-	case "hard":
+	case 2:
 	{
 		NumCansNeeded = 10;
 		EntFire( "relay_outro_advanced", "Enable" );
 		break;
 	}
-	case "impossible":
+	case 3:
 	{
 		NumCansNeeded = 12;
 		EntFire( "relay_outro_expert", "Enable" );
