@@ -8,6 +8,9 @@ DirectorOptions <-
 
 	cm_AllowPillConversion = 0
 
+	ZombieGhostDelayMin = 15
+	ZombieGhostDelayMax = 25
+
 	weaponsToRemove =
 	{
 		weapon_first_aid_kit = 0

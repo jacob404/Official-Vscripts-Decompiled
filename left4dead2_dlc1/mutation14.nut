@@ -22,13 +22,14 @@ DirectorOptions <-
 		weapon_shotgun_spas = 0
 		weapon_grenade_launcher = 0
 		weapon_rifle_ak47 = 0
-		weapon_smg_mp5 = 0		
-		weapon_rifle_sg552 = 0		
-		weapon_sniper_awp = 0	
+		weapon_smg_mp5 = 0
+		weapon_rifle_sg552 = 0
+		weapon_sniper_awp = 0
 		weapon_sniper_scout = 0
 		weapon_rifle_m60 = 0
 		weapon_melee = 0
 		weapon_chainsaw = 0
+		ammo = 0
 	}
 
 	function AllowWeaponSpawn( classname )
@@ -54,5 +55,15 @@ DirectorOptions <-
 		}
 		return 0;
 	}	
+}
+
+removed_weapon_spawns <- false;
+function Update()
+{
+	if( !removed_weapon_spawns )
+    {
+		EntFire( "weapon_spawn", "kill" );
+		removed_weapon_spawns = true;
+    }
 }
 

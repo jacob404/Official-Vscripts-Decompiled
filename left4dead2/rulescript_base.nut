@@ -114,7 +114,22 @@ class RRule {
 		local l = arr.len()
 		if ( l > 0 )
 		{
-			return arr[RandomInt( 0, l - 1 ) ]
+			local retval = RandomInt( 0, l - 1 )
+			local _arr = arr[retval]
+			if ( "params" in _arr )
+			{
+				if ( ("odds" in _arr.params) && !(RandomInt(0, 100) <= _arr.params.odds) )
+					return null
+				if ( "fire" in _arr.params )
+				{
+					local relay = Entities.FindByName( null, _arr.params.fire[0] )
+					if ( (relay) && (relay.GetClassname() == "logic_relay") )
+						DoEntFire( "!self", _arr.params.fire[1], "", _arr.params.fire[2], null, relay )
+				}
+				if ( "speakonce" in _arr.params )
+					arr.remove(retval)
+			}
+			return _arr
 		}
 		else
 			return null
@@ -129,17 +144,32 @@ class RRule {
 			print("Matched rule: " )
 			Describe( false )
 		}
+		if ( group_params.matchonce )
+		{
+			if ( selection_state.matched )
+			{
+				Disable()
+				return // do nothing
+			}
+			else
+				selection_state.matched = true
+		}
 		if ( group_params.permitrepeats ) 
 		{
 			// just randomly pick a response 
 			local R = ChooseRandomFromArray( responses )
+			if ( !R )
+			{
+				Disable()
+				return // do nothing
+			}
 			
 			if ( Convars.GetFloat("rr_debugresponses") > 0 )
 			{
 				print("Matched " )
 				R.Describe()
 			}
-				
+			
 			return R
 		}
 		// else...
@@ -181,6 +211,23 @@ class RRule {
 				print("Matched " )
 				R.Describe()
 			}
+			if ( ("odds" in R.params) && !(RandomInt(0, 100) <= R.params.odds) )
+			{
+				Disable()
+				return // do nothing
+			}
+			if ( "fire" in R.params )
+			{
+				local relay = Entities.FindByName( null, R.params.fire[0] )
+				if ( (relay) && (relay.GetClassname() == "logic_relay") )
+					DoEntFire( "!self", R.params.fire[1], "", R.params.fire[2], null, relay )
+			}
+			if ( "speakonce" in R.params )
+			{
+				responses.remove(retval)
+				selection_state.playedresponses.remove(retval)
+				selection_state.nextseq = selection_state.nextseq - 1
+			}
 			return R
 		}
 		else
@@ -194,6 +241,22 @@ class RRule {
 			{
 				print("Matched " )
 				R.Describe()
+			}
+			if ( ("odds" in R.params) && !(RandomInt(0, 100) <= R.params.odds) )
+			{
+				Disable()
+				return // do nothing
+			}
+			if ( "fire" in R.params )
+			{
+				local relay = Entities.FindByName( null, R.params.fire[0] )
+				if ( (relay) && (relay.GetClassname() == "logic_relay") )
+					DoEntFire( "!self", R.params.fire[1], "", R.params.fire[2], null, relay )
+			}
+			if ( "speakonce" in R.params )
+			{
+				responses.remove(retval)
+				selection_state.playedresponses.remove(retval)
 			}
 			return R
 		}
@@ -216,5 +279,6 @@ class RRule {
 	selection_state = { 
 		nextseq = 0 , // next response to play if 'sequential' is true
 		playedresponses = [], // an array containing one bool per response -- indicating whether it's played or not, to handle 'permitrepeats'
+		matched = false, // used for 'matchonce'
 	}
 }

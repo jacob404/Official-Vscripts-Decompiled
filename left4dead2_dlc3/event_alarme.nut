@@ -7,11 +7,11 @@ ProhibitBosses = true
 
 //LockTempo = true
 MobSpawnMinTime = 3
-MobSpawnMaxTime = 7
-MobMinSize = 15
-MobMaxSize = 15
+MobSpawnMaxTime = 6
+MobMinSize = 11
+MobMaxSize = 17
 MobMaxPending = 30
-SustainPeakMinTime = 5
+SustainPeakMinTime = 4
 SustainPeakMaxTime = 10
 IntensityRelaxThreshold = 0.99
 RelaxMinInterval = 1
